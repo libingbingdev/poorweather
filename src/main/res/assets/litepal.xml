@@ -1,0 +1,11 @@
+<litepal>
+    <dbname value="poorweather" />
+    <version value="1" />
+    <!--数据库名为poorweather
+    数据库版本为1-->
+    <list>
+        <mapping class="com.poorweather.android.db.Province" />
+        <mapping class="com.poorweather.android.db.City" />
+        <mapping class="com.poorweather.android.db.County" />
+    </list>
+</litepal>

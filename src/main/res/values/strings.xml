@@ -12,4 +12,5 @@
     <string name="comfort">舒适度：</string>
     <string name="carwash_index">洗车指数：</string>
     <string name="sport_suggest">运动建议：</string>
+    <string name="update_time">更新时间:</string>
 </resources>

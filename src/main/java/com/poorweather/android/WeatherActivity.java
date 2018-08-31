@@ -57,9 +57,9 @@ public class WeatherActivity extends AppCompatActivity {
 
     public DrawerLayout drawerLayout;
 
-    private static final String WEATHER_URL = "http://guolin.tech/api/weather?cityid=";
-    private static final String HEWEATHER_KEY = "&key=1f9ac1550a6542c78ec496d161432775";
-    private static final String BINGPIC_URL = "http://guolin.tech/api/bing_pic";
+    public static final String WEATHER_URL = "http://guolin.tech/api/weather?cityid=";
+    public static final String HEWEATHER_KEY = "&key=1f9ac1550a6542c78ec496d161432775";
+    public static final String BINGPIC_URL = "http://guolin.tech/api/bing_pic";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +67,10 @@ public class WeatherActivity extends AppCompatActivity {
         /**
          * 此功能在5.0系统上加入
          */
-        if (Build.VERSION.SDK_INT >= 21){
+        if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            |View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         setContentView(R.layout.activity_weather);
@@ -221,7 +221,7 @@ public class WeatherActivity extends AppCompatActivity {
         String weatherInfo = weather.now.more.info;
 
         titleCity.setText(cityName);
-        titleUpdateTime.setText(updateTime);
+        titleUpdateTime.setText(getString(R.string.update_time) + updateTime);
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
 

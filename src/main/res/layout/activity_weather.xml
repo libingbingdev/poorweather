@@ -13,29 +13,34 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <ScrollView
-        android:id="@+id/weather_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
-
-        <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <!--ScrollView外嵌套SwipeRefreshLayout，实现下拉刷新的功能-->
+        <ScrollView
+            android:id="@+id/weather_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:fitsSystemWindows="true">
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
-            <include layout="@layout/title" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical">
 
-            <include layout="@layout/now" />
+                <include layout="@layout/title" />
 
-            <include layout="@layout/forecase" />
+                <include layout="@layout/now" />
 
-            <include layout="@layout/aqi" />
+                <include layout="@layout/forecase" />
 
-            <include layout="@layout/suggestion" />
-        </LinearLayout>
-    </ScrollView>
+                <include layout="@layout/aqi" />
 
+                <include layout="@layout/suggestion" />
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>

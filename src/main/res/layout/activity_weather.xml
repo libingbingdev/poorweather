@@ -13,34 +13,50 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
-        android:layout_width="wrap_content"
+    <!--通过DrawerLayout加入滑动菜单-->
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--ScrollView外嵌套SwipeRefreshLayout，实现下拉刷新的功能-->
-        <ScrollView
-            android:id="@+id/weather_layout"
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!--ScrollView外嵌套SwipeRefreshLayout，实现下拉刷新的功能-->
+            <ScrollView
+                android:id="@+id/weather_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/title" />
+
+                    <include layout="@layout/now" />
+
+                    <include layout="@layout/forecase" />
+
+                    <include layout="@layout/aqi" />
+
+                    <include layout="@layout/suggestion" />
+                </LinearLayout>
+            </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <!--添加用于选择县市省的功能碎片
+        通过设定android:layout_gravity="start"使碎片从屏幕左方划出-->
+        <fragment
+            android:id="@+id/choose_area_fragment"
+            android:name="com.poorweather.android.ChoolseAreaFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                android:orientation="vertical">
-
-                <include layout="@layout/title" />
-
-                <include layout="@layout/now" />
-
-                <include layout="@layout/forecase" />
-
-                <include layout="@layout/aqi" />
-
-                <include layout="@layout/suggestion" />
-            </LinearLayout>
-        </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_gravity="start" />
+    </android.support.v4.widget.DrawerLayout>
 </FrameLayout>

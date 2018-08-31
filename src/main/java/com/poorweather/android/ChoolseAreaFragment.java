@@ -97,12 +97,28 @@ public class ChoolseAreaFragment extends Fragment {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = cityList.get(position);
                     queryCounties();
-                }else if(currentLevel == LEVEL_COUNTY){
+                } else if (currentLevel == LEVEL_COUNTY) {
                     String weatherId = countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    /**
+                     * 通过instanceof判断一个对象是否属于某个类
+                     * 若当前Activity是WeatherActivity，则无需跳转界面，
+                     * 关闭滑动界面，显示下拉刷新进度条，请求新城市的天气信息
+                     */
+                    if (getActivity() instanceof MainActivity) {
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else if (getActivity() instanceof WeatherActivity) {
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        //关闭滑动界面
+                        activity.drawerLayout.closeDrawers();
+                        //显示下拉刷新进度条
+                        activity.swipeRefreshLayout.setRefreshing(true);
+                        //请求新城市的天气信息
+                        activity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PoorWeather</string>
+    <string name="app_name">破天气</string>
     <string name="china">中国</string>
     <string name="loading">正在加载...</string>
     <string name="load_fail">加载失败</string>

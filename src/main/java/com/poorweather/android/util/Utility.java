@@ -3,9 +3,11 @@ package com.poorweather.android.util;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.poorweather.android.db.City;
 import com.poorweather.android.db.County;
 import com.poorweather.android.db.Province;
+import com.poorweather.android.gson.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -94,5 +96,25 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    /**
+     * "HeWeather"
+     * 将返回的JSON数据解析成Weather实体类
+     * @param response
+     * @return
+     */
+    public static Weather handleWeatherResponse(String response){
+        if (!TextUtils.isEmpty(response)){
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+                String weatherContent = jsonArray.getJSONObject(0).toString();
+                return new Gson().fromJson(weatherContent,Weather.class);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }
